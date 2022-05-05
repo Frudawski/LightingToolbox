@@ -28,14 +28,14 @@ The LightingToolbox contains numerous Matlab/Octave functions for lighting resea
     - type: “addpath(‘path_to_lighting_toolbox/functions’)” in the command window
 4. Optional: install image package:
     - Type: “install package -forge image” in the command window
-5. Recommended: load image package at startup:
-    - Type: “edit octaverc” in command window
-    - Add line: “pkg load image” to octaverc file
-    - Save -> close Octave -> start Octave
-6. Test the Lighting Toolbox functionality:
+    - Recommended: load image package at startup:
+        - Type: “edit octaverc” in command window
+        - Add line: “pkg load image” to octaverc file
+        - Save -> close Octave -> restart Octave
+5. Test the Lighting Toolbox functionality:
     - Type: “plotciexy” in the command window
     - A plot of the CIE x and y chromaticity should appear
-7. The Lighting Toolbox is ready to use.
+6. The Lighting Toolbox is ready to use.
 
 # Documentation
 The LigthingToolbox is documenteted with numerous function examples on: www.frudawski.de/LightingToolbox
