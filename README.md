@@ -14,7 +14,7 @@ The LightingToolbox contains numerous Matlab/Octave functions for lighting resea
 1. Download the Lighting Toolbox and move it to a location of your choice.
 2. Start Matlab
 3. Add the Lighting Toolbox to Matlab's search path:
-  	- Type: “addpath(‘path_to_lighting_toolbox’)” in the command window
+  	- Type: “addpath(‘path_to_lighting_toolbox/functions’)” in the command window
     - Or click “Set Path” button under Matlab HOME tab -> “Add Folder…” -> select folder -> confirm -> “Save”
 4. Test the Lighting Toolbox functionality:
     - Type: “plotciexy” in the command window
@@ -25,7 +25,7 @@ The LightingToolbox contains numerous Matlab/Octave functions for lighting resea
 1. Download the Lighting Toolbox and move it to a location of your choice.
 2. Start GNU Octave
 3. Add the Lighting Toolbox to Octave's search path:
-    - type: “addpath(‘path_to_lighting_toolbox’)” in the command window
+    - type: “addpath(‘path_to_lighting_toolbox/functions’)” in the command window
 4. Optional: install image package:
     - Type: “install package -forge image” in the command window
 5. Recommended: load image package at startup:
