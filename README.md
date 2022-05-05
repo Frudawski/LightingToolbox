@@ -9,8 +9,9 @@ The LightingToolbox contains numerous Matlab/Octave functions for lighting resea
 - Image functions
 - Measurement functions
 
-**cite:**
-Frederic Rudawski, Lighting Toolbox for Matlab and Octave, 2022, version 1.0, url: https://github.com/Frudawski/LightingToolbox
+**Cite as:**
+
+Frederic Rudawski, *Lighting Toolbox for Matlab and Octave*, 2022, version 1.0, url: https://github.com/Frudawski/LightingToolbox
 
 # LigthingToolbox setup
 **MATLAB:**
