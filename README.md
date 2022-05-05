@@ -36,4 +36,4 @@ The LightingToolbox contains numerous Matlab/Octave functions for lighting resea
   - A plot of the CIE x and y chromaticity should appear
 
 # Documentation
-The LigthingToolbox is documenteted with numerous function examples on: www.frudawski.de/LightinToolbox
+The LigthingToolbox is documenteted with numerous function examples on: www.frudawski.de/LightingToolbox
