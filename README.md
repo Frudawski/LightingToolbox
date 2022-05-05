@@ -14,11 +14,11 @@ The LightingToolbox contains numerous Matlab/Octave functions for lighting resea
 * Download the Lighting Toolbox and move it to a location of your choice.
 * Start Matlab
 * Add the Lighting Toolbox to Matlab search path:
-  Type: “addpath(‘path_to_lighting_toolbox’)” in the command window
-  Or click “Set Path” button under Matlab HOME tab -> “Add Folder…” -> select folder -> confirm -> “Save”
+  - Type: “addpath(‘path_to_lighting_toolbox’)” in the command window
+  - Or click “Set Path” button under Matlab HOME tab -> “Add Folder…” -> select folder -> confirm -> “Save”
 * Test the Lighting Toolbox functionality:
-  Type: “plotciexy” in the command window
-  A plot of the CIE x and y chromaticity should appear
+  - Type: “plotciexy” in the command window
+  - A plot of the CIE x and y chromaticity should appear
 
 
 
