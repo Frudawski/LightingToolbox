@@ -41,5 +41,5 @@ The LightingToolbox contains numerous Matlab/Octave functions for lighting resea
 The LigthingToolbox is documenteted with numerous function examples on: www.frudawski.de/LightingToolbox
 
 # Cite
-Frederic Rudawski, *Lighting Toolbox for Matlab and Octave*, 2022, version 1.0, url: www.frudawski.de/LightingToolbox
+Frederic Rudawski, *Lighting Toolbox for Matlab and Octave*, 2022, version 1.0, URL: www.frudawski.de/LightingToolbox
 
