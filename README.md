@@ -9,7 +9,7 @@ The LightingToolbox contains numerous Matlab/Octave functions for lighting resea
 - Image functions
 - Measurement functions
 
-# LigthingToolbox setup
+## LigthingToolbox setup:
 **MATLAB:**
 1. Download the Lighting Toolbox and move it to a location of your choice.
 2. Start Matlab
@@ -37,9 +37,9 @@ The LightingToolbox contains numerous Matlab/Octave functions for lighting resea
     - A plot of the CIE x and y chromaticity should appear
 6. The Lighting Toolbox is ready to use.
 
-# Documentation
+## Documentation:
 The LigthingToolbox is documenteted with numerous function examples on: www.frudawski.de/LightingToolbox
 
-# Cite
+## Cite:
 Frederic Rudawski, *Lighting Toolbox for Matlab and Octave*, 2022, version 1.0, URL: www.frudawski.de/LightingToolbox
 
