@@ -1,5 +1,5 @@
 # LightingToolbox
-The LightingToolbox contains numerous Matlab/Octave functions for lighting reseach calculations, plotting and colorimetry. It is freely available under BSD3.0 license.
+The LightingToolbox contains numerous Matlab/Octave functions for lighting reseach calculations, plotting and colorimetry. It is available under BSD3.0 license.
 
 **Categories:**
 - Calculation functions
