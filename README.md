@@ -1,5 +1,5 @@
 # LightingToolbox
-The LightingToolbox contains numerous Matlab/Octave functions for lighting reseach calculations, plotting and colorimetry and is freely availabe under BSD3.0 license with no garanties whatsoever.
+The LightingToolbox contains numerous Matlab/Octave functions for lighting reseach calculations, plotting and colorimetry. It is freely available under BSD3.0 license.
 
 **Categories:**
 - Calculation functions
@@ -29,9 +29,9 @@ The LightingToolbox contains numerous Matlab/Octave functions for lighting resea
 4. Optional: install image package:
     - Type: ```install package -forge image``` in the command window
     - Recommended: load image package at startup:
-        - Type: ```edit octaverc``` in command window
-        - Add line: ```pkg load image``` to octaverc file
-        - Save -> close Octave -> restart Octave
+      * Type: ```edit octaverc``` in command window
+      * Add line: ```pkg load image``` to octaverc file
+      * Save -> close Octave -> restart Octave
 5. Test the Lighting Toolbox functionality:
     - Type: ```plotciexy``` in the command window
     - A plot of the CIE x and y chromaticity should appear
