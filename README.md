@@ -27,11 +27,12 @@ The LightingToolbox contains numerous Matlab/Octave functions for lighting resea
 3. Add the Lighting Toolbox to Octave's search path:
     - type: ```addpath(‘PATH_TO_LIGHTING_TOOLBOX\functions’)``` in the command window
 4. Optional: install image package:
-    - Type: ```install package -forge image``` in the command window
+    - Type: ```pkg install package -forge image``` in the command window
     - Recommended: load image package at startup:
       * Type: ```edit octaverc``` in command window
       * Add line: ```pkg load image``` to octaverc file
       * Save -> close Octave -> restart Octave
+      * Or load the image package each time manually with the command: ```pkg load image```
 5. Test the Lighting Toolbox functionality:
     - Type: ```plotciexy``` in the command window
     - A plot of the CIE x and y chromaticity should appear
