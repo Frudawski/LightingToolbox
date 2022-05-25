@@ -286,8 +286,15 @@ else
         LE = legend(legend_horizontal,legend_vertical);
     end
 end
-LE.Location = 'SouthOutside';
-LE.Orientation = 'Horizontal';
+
+% Legend
+if exist('OCTAVE_VERSION', 'builtin')
+  set(LE,'Location','SouthOutside');
+  set(LE,'Orientation','Horizontal');
+else
+  LE.Location = 'SouthOutside';
+  LE.Orientation = 'Horizontal';
+end
 
 % black background ?
 if black_background
@@ -306,7 +313,7 @@ else
     set(ax,'color',[1 1 1])
     set(fig,'color',[0.95 0.95 0.95])
     set(ax,'GridColorMode','auto')
-    ax.LineWidth = 1;
+    set(ax,'LineWidth',1);
     grid on
 end
 

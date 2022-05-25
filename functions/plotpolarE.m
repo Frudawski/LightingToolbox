@@ -13,10 +13,8 @@
 %
 % parameters:
 %        'Background' : 'black' or 'white' (default 'white')
-%        'D65' : 'on' or 'off' (default 'on') - draws an additional
-%                 D65 circle in figure
+%        'E' : draws additional contant horiontal illuminance, scalar
 %        'info' : info string
-%        'FontSize' : Fontsize
 %
 % Author: Frederic Rudawski
 % Date: 18.12.2019, last edited: 12.03.2021
@@ -89,12 +87,12 @@ solid_anglehp = 1./4.*(cosd(2.*[(pnt(1,1:end-1)'-6);84]) - cosd(2.*[(pnt(1,1:end
 h = sum( solid_anglehp' .* Y(1:145)');
 
 for i = 1:size(Y,2)
-    
+
     input = Y;
     vi = zeros(360,size(input,2));
     for azimuth = 1:1:360
         for patch = 1:size(pnt,2)
-            
+
             el1 = pnt(1,patch)-6;
             el2 = pnt(1,patch)+6;
             az2 = circledist(pnt(2,patch)-pnt(3,patch)/2,azimuth);
@@ -118,13 +116,13 @@ for i = 1:size(Y,2)
             % a = alpha: sun azimuth angle
             solid_anglevp = 1./4.*((sind(az(2)))-(sind(az(1)))).*(2*deg2rad(el1)-2*deg2rad(el2)+sind(2*el1)-sind(2*el2));
             vi(azimuth,:) = vi(azimuth,:) + input(patch).*solid_anglevp;
-            
+
         end
-        
+
     end
-    
+
     vertical_integral{i} = vi;
-    
+
 end
 
 % plot
@@ -137,16 +135,47 @@ else
     rho3 = ones(size(theta)).*NaN;
 end
 if black_background
-    pol = polarplot(theta,rho1,'w--',theta,rho2,'w-',theta,rho3,'w-.','LineWidth',1.5);
+    if exist('OCTAVE_VERSION', 'builtin')
+      pol = polar(theta,rho1,'w--');
+      hold on
+      polar(theta,rho2,'w-');
+      polar(theta,rho3,'w-.');
+      hold off
+    else
+      pol = polarplot(theta,rho1,'w--',theta,rho2,'w-',theta,rho3,'w-.','LineWidth',1.5);
+    end
 else
-    pol = polarplot(theta,rho1,'k--',theta,rho2,'k-',theta,rho3,'k-.');
+    if exist('OCTAVE_VERSION', 'builtin')
+      pol = polar(theta,rho1,'k--');
+      hold on
+      polar(theta,rho2,'k-');
+      polar(theta,rho3,'k-.');
+      hold off
+    else
+      pol = polarplot(theta,rho1,'k--',theta,rho2,'k-',theta,rho3,'k-.');
+    end
 end
 hold on
-%title(titletext)%(strrep(file,'_','-'))
-ax = gca;
-ax.ThetaTick = [0 90 180 270];
-ax.ThetaTickLabel = {'O' 'N' 'W' 'S'};
 
+%title(titletext)%(strrep(file,'_','-'))
+if exist('OCTAVE_VERSION', 'builtin')
+  %newlabel = {'60','30','0','30','60','90','120','150','180','150','120','90'};
+  newlabel = {'','','S','','','W','','','N','','','E'};
+  labels = findall(gca, 'type', 'text');
+  distances = cellfun(@(x)norm(x(1:2)), get(labels, 'Position'));
+  % Figure out the most common
+  [~, ~, b] = unique(round(distances * 100));
+  hi = hist(b, 1:max(b));
+  labels = labels(b == find(hi == max(hi)));
+  % set new label string
+  for k = 1:numel(labels)
+    set(labels(k), 'String', newlabel(k));
+  end
+else
+  ax = gca;
+  ax.ThetaTick = [0 90 180 270];
+  ax.ThetaTickLabel = {'O' 'N' 'W' 'S'};
+end
 
 if black_background
     if ~isempty(p.Results.E)
@@ -163,41 +192,45 @@ else
         LE = legend(legend_horizontal,legend_vertical);
     end
 end
-LE.Location = 'SouthOutside';
-LE.Orientation = 'Horizontal';
 
-ax = gca;
-ax.ThetaTick = [0 90 180 270];
-ax.ThetaTickLabel = {'E' 'N' 'W' 'S'};
-hold off
-%rlim([0 max_axis])
+% Legend
+if exist('OCTAVE_VERSION', 'builtin')
+  set(LE,'Location','SouthOutside');
+  set(LE,'Orientation','Horizontal');
+else
+  LE.Location = 'SouthOutside';
+  LE.Orientation = 'Horizontal';
+end
 
 
 % black background ?
-if black_background
-    
-    fig = gcf;
-    set(ax,'color',[0 0 0])
-    set(fig,'color',[0 0 0])
-    ax.GridColor = [1 1 1];
-    ax.GridAlpha = 0.5;
-    set(ax,'GridColorMode','auto')
-    ax.RColor = [1 1 1];
-    ax.ThetaColor = 'w';
-    ax.LineWidth = 1;
-    grid on
-    fig.InvertHardcopy = 'off';
-else
-    fig = gcf;
-    set(ax,'color',[1 1 1])
-    set(fig,'color',[0.95 0.95 0.95])
-    %ax.GridColor = [0.95 0.95 0.95];
-    %ax.GridAlpha = 0.5;
-    set(ax,'GridColorMode','auto')
-    ax.RColor = [0 0 0];
-    ax.ThetaColor = 'k';
-    ax.LineWidth = 1;
-    grid on
+if exist('OCTAVE_VERSION', 'builtin')
+
+  else
+    if black_background
+        fig = gcf;
+        set(ax,'color',[0 0 0])
+        set(fig,'color',[0 0 0])
+        ax.GridColor = [1 1 1];
+        ax.GridAlpha = 0.5;
+        set(ax,'GridColorMode','auto')
+        ax.RColor = [1 1 1];
+        ax.ThetaColor = 'w';
+        ax.LineWidth = 1;
+        grid on
+        fig.InvertHardcopy = 'off';
+    else
+        fig = gcf;
+        set(ax,'color',[1 1 1])
+        set(fig,'color',[0.95 0.95 0.95])
+        %ax.GridColor = [0.95 0.95 0.95];
+        %ax.GridAlpha = 0.5;
+        set(ax,'GridColorMode','auto')
+        ax.RColor = [0 0 0];
+        ax.ThetaColor = 'k';
+        ax.LineWidth = 1;
+        grid on
+    end
 end
 
 title('illuminance distribution in lx')
