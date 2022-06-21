@@ -23,7 +23,15 @@
 % last edited: 26.05.2021
 % See: https://www.frudawski.de/ciecct2spec
 
-function [spec,lambda,xd,yd] = ciecct2spec(Tc,lam)
+function [spec,lambda,xd,yd] = ciecct2spec(Tc,lam,Y,W)
+
+% check input
+if ~exist('Y','var')
+    Y = [];
+end
+if ~exist('W','var')
+    W = 'VL';
+end
 
 % Judd eigenvectors
 % row 1: wavelength in nm
@@ -83,4 +91,18 @@ else
     end
 end
 
+
+% weight spectra
+if ~isempty(Y)
+    F = ciespec2unit(lambda,spec,W);
+    % in case of different weighting functions
+    if size(F,2) > 1
+        F = diag(F);
+    end
+    % weighting factor
+    f = Y'./F;
+    % weight spectra with factor
+    spec = spec.*repmat(f,1,length(lambda));
 end
+
+

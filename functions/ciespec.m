@@ -2,10 +2,13 @@
 % Calculates the linear interpolated values of a given wavelength vector
 % and the reference in question.
 %
-% usage: spec = ciespec(lambda,'reference')
+% usage: spec = ciespec(lambda,'reference',Y,'W')
 %
 % where: lamba is a vector with the wavelengths
-%        and 'reference' is the reference in question, see list below.
+%        'reference' is the reference in question, see list below.
+%        Y (optional) specifies the V(lambda) weigthed target value(s),
+%        default: none
+%        'W' (optional) specifies the weighting function(s), default: 'VL'
 %
 %        It is possible assign multiple references in one function call by
 %        using an cell array:
@@ -123,8 +126,17 @@
 % Date: 25.09.2019 - last edited: 30.05.2021 (Sunday)
 % See: https://www.frudawski.de/ciespec
 
-function spec = ciespec(lambda,reference)
+function spec = ciespec(lambda,reference,Y,W)
 
+% check input
+if ~exist('Y','var')
+    Y = [];
+end
+if ~exist('W','var')
+    W = 'VL';
+end
+
+% get referrence spectra
 type = whos('reference');
 if isequal('cell',type.class)
     spec = zeros(size(reference,2),size(lambda,2));
@@ -147,6 +159,20 @@ if isequal('cell',type.class)
 else
     spec = spectrum(lambda,reference);
 end
+
+% weight spectra
+if ~isempty(Y)
+    F = ciespec2unit(lambda,spec,W);
+    % in case of different weighting functions
+    if size(F,2) > 1
+        F = diag(F);
+    end
+    % weighting factor
+    f = Y'./F;
+    % weight spectra with factor
+    spec = spec.*repmat(f,1,length(lambda));
+end
+
 
 function spec = spectrum(lambda,reference)
 % common wavelength steps

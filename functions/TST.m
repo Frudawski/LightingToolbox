@@ -1,6 +1,7 @@
 % Calculates the True Solar Time (TST) from Coordinated Universal Time (UTC)
+% in europe.
 %
-% Usage: [tst,localtime_germany,azimuth,elevation] = TST('dd.mm.yyyy','hh:mm:ss',geolength,geowidth)
+% Usage: [tst,localtime_germany,azimuth,elevation] = TST('dd.mm.yyyy','hh:mm:ss',geolength,geowidth,offset)
 %
 % default: geolen = 13.326, geowidth = 52.514
 %
@@ -12,7 +13,7 @@
 % Date: 22.11.2017
 % See: https://www.frudawski.de/TST
 
-function [TST,localtime,azimuth,elevation] = TST(datevar,utc,geolen,geow)
+function [TST,localtime,azimuth,elevation,offset] = TST(datevar,utc,geolen,geow,offset)
 
 if ~exist('datevar','var')
     datevar = date;
@@ -24,9 +25,18 @@ if ~exist('utc','var')
     utc = utc(end-7:end);
 end
 if ~exist('geolen','var') && ~exist('geow','var')
-    geolen = 13.326;
-    geow   = 52.514;
+    load('LT_location.mat','coord');
+    geolen = coord(1);
+    geow   = coord(2);
 end
+if ~exist('offset','var')
+    load('LT_location.mat','summeroffset','winteroffset');
+    offset = 0;
+else
+    summeroffset = offset;
+    winteroffset = offset;
+end
+
 
 for i = 1:size(datevar,1)
 
@@ -116,17 +126,16 @@ for i = 1:size(datevar,1)
     
     DAY = d+sum(days(1:m-1));
     
-    if DAY >= summerday && DAY < winterday
-        if hrsUTC+2 >= 10
-            localtime_hrs = num2str(hrsUTC+2);
-        else
-            localtime_hrs = ['0',num2str(hrsUTC+2)];
-        end
+    if strcmp(offset,'off')
+        localtime_hrs = num2str(hrsUTC);
+        offset = 0;
     else
-        if hrsUTC+1 >= 10
-            localtime_hrs = num2str(hrsUTC+1);
+        if DAY >= summerday && DAY < winterday
+            localtime_hrs = num2str(hrsUTC+summeroffset,'%02d');
+            offset = summeroffset;
         else
-            localtime_hrs = ['0',num2str(hrsUTC+1)];
+            localtime_hrs = num2str(hrsUTC+winteroffset,'%02d');
+            offset = winteroffset;
         end
     end
     

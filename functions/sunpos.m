@@ -1,5 +1,5 @@
 % sunpos function returns the sun position (azimuth and elevation angle)
-% for a given date, UTC time and location according to DIN EN 17037.
+% for a given date, UTC time and location in europe according to DIN EN 17037.
 %
 % usage: [azimuth,elevation] = sunpos(datevar,utc,geolen,geow)
 %
@@ -17,7 +17,7 @@
 % Date: 10.08.2021
 % See: https://www.frudawski.de/sunpos
 
-function [az,el]= sunpos(datevar,utc,geolen,geow)
+function [az,el] = sunpos(datevar,utc,geolen,geow)
 
 if ~exist('datevar','var')
     datevar = date;
@@ -33,8 +33,9 @@ if ~exist('utc','var')
     utc = utc(end-7:end);
 end
 if ~exist('geolen','var') && ~exist('geow','var')
-    geolen = 13.326;
-    geow   = 52.514;
+    load('LT_location.mat','coord');
+    geolen = coord(1);
+    geow = coord(2);
 end
 
 [~,~,az,el] = TST(datevar,utc,geolen,geow);
