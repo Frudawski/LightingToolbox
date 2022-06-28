@@ -524,8 +524,8 @@ if strcmp(p.Results.WhitePoints,'') == 0
 
     for k = 1:size(wp,1)
         [~,WP] = ciewhitepoint(wp{k});
-        wpuv = ciexy2uv(WP(1),WP(2));
-        WP(1:2) = wpuv;
+        [wpu,wpv] = ciexy2uv(WP(1),WP(2));
+        WP = [wpu wpv 1-wpu-wpv];
         WP(2) = WP(2).*1.5;
         plot(WP(1)*1000,1000-WP(2)*1000,p.Results.Marker,'Color',plotcolor,'MarkerSize',p.Results.MarkerSize,'Linewidth',1.25);
         text(WP(1)*1000+15,1000-WP(2)*1000,wp{k},...
