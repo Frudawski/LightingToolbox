@@ -24,7 +24,7 @@
 % Date: somewhat 2015
 % See: https://www.frudawski.de/kobavskytype
 
-function [sky,rms] = kobavskytype(data,az,el,mode)
+function [Sky,rms,sky] = kobavskytype(data,az,el,mode)
 % Some messy code, grown over time without much expirience:
 
 if ~exist('mode','var')
@@ -859,10 +859,10 @@ end
 
 switch mode
     case 'cie'
-        sky = SkyModel;
+        Sky = SkyModel;
         rms = mean(RMSD);
     case 'nearest'
-        sky = NearestSky;
+        Sky = NearestSky;
         rms = mean(RMSD);
 end
 
