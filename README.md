@@ -45,5 +45,5 @@ The Lighting Toolbox contains various reference spectra provided by the Commissi
 The Lighting Toolbox is documented with numerous function examples on: https://frudawski.de/ligthing-toolbox/
 
 ## Cite:
-Frederic Rudawski, *Lighting Toolbox for Matlab and Octave*, 2022, version 1.05, URL: https://frudawski.de/ligthing-toolbox/
+Frederic Rudawski, *Lighting Toolbox for Matlab and Octave*, 2022, version 1.06, URL: https://frudawski.de/ligthing-toolbox/
 
