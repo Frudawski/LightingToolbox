@@ -14,6 +14,7 @@ The Lighting Toolbox contains various reference spectra provided by the Commissi
 
 ## LigthingToolbox setup:
 **MATLAB:**
+Tested with version 2022a
 1. Download the Lighting Toolbox and move it to a location of your choice.
 2. Start Matlab
 3. Add the Lighting Toolbox to Matlab's search path:
@@ -25,6 +26,7 @@ The Lighting Toolbox contains various reference spectra provided by the Commissi
 5. The Lighting Toolbox is ready to use.
 
 **GNU Octave:**
+Tested with version 7.1.0
 1. Download the Lighting Toolbox and move it to a location of your choice.
 2. Start GNU Octave
 3. Add the Lighting Toolbox to Octave's search path:
