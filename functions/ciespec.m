@@ -140,20 +140,27 @@ end
 type = whos('reference');
 if isequal('cell',type.class)
     spec = zeros(size(reference,2),size(lambda,2));
+    ind = 1;
     for i = 1:size(reference,2)
         switch reference{i}
             case 'a-opic'
-                spec(i:i+4,:) = spectrum(lambda,reference{i});
+                spec(ind:ind+4,:) = spectrum(lambda,reference{i});
+                ind = ind+5;
             case 'aopic'
-                spec(i:i+4,:) = spectrum(lambda,reference{i});
+                spec(ind:ind+4,:) = spectrum(lambda,reference{i});
+                ind = ind+5;
             case 'xyz'
-                spec(i:i+2,:) = spectrum(lambda,reference{i});
+                spec(ind:ind+2,:) = spectrum(lambda,reference{i});
+                ind = ind+3;
             case 'xyz10'
-                spec(i:i+2,:) = spectrum(lambda,reference{i});
+                spec(ind:ind+2,:) = spectrum(lambda,reference{i});
+                ind = ind+3;
             case 'rgb'
-                spec(i:i+2,:) = spectrum(lambda,reference{i});
+                spec(ind:ind+2,:) = spectrum(lambda,reference{i});
+                ind = ind+3;
             otherwise
-                spec(i,:) = spectrum(lambda,reference{i});
+                spec(ind,:) = spectrum(lambda,reference{i});
+                ind = ind+1;
         end
     end
 else
