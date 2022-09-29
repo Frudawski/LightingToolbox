@@ -7,7 +7,7 @@
 % where:
 % x and y are the coordinate matrices of the mesh grid
 % data is the data to plot
-% mode sets the plot mode: 'clr' or 'lines'
+% mode sets the plot mode: 'isocolor', 'falsecolor' or 'lines' (default)
 % clabel is an optional input argument string for the colorbar label
 % climits sets the colorbar range
 % 
@@ -16,6 +16,9 @@
 
 function plotgrid(x,y,Y,mode,clabel,climits)
 
+if ~exist('mode','var')
+    mode = 'lines';
+end
 if ~exist('clabel','var')
     clabel = '';
 end
@@ -55,7 +58,7 @@ switch mode
     case 'falsecolor'
         plotfalsecolours(x,y,Y,'lin',clabel,climits);
     otherwise
-        error(['Undefined plot mode "',mode,'" in plotgrid funciton']) 
+        error(['Undefined plot mode "',mode,'" in plotgrid function']) 
 end
 
 
