@@ -40,7 +40,7 @@ for row = 1:size(specin,1)
     % determine spectral distribution of reference illuminant depending on Tcp
     if Tcp > 5e3
         S = ciecct2spec(Tcp,lam);
-    elseif (Tcp > 4e3) && (Tcp < 5e3)
+    elseif (Tcp >= 4e3) && (Tcp <= 5e3)
         RP = planck(Tcp,lam,'CIE');
         RD = ciecct2spec(Tcp,lam);
         S1 = 100.*RP./ciespec2unit(lam,RP,'y',1);
