@@ -60,10 +60,6 @@ for row = 1:size(specin,1)
     Y10r = 100.*ciespec2unit(lam,S.*ciespec(lam,'y10'),'CFI+',1)./ciespec2unit(lam,S,'y10',1);
     Z10r = 100.*ciespec2unit(lam,S.*ciespec(lam,'z10'),'CFI+',1)./ciespec2unit(lam,S,'y10',1);
     
-    % determine 10° Tristimulus values of the illuminant white points
-    %XYZ10wt = ciespec2wp(lam,spec,'xyz10');
-    %XYZ10wr = ciespec2wp(lam,S,'xyz10');
-    
     % convert to CAT02 RGB
     MCAT02 = [0.7328 0.4296 -0.1624;-0.7036 1.6975 0.0061;0.0030 0.0136 0.9834];
     RGBt = MCAT02*[X10t;Y10t;Z10t];
