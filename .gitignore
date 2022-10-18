@@ -1,0 +1,6 @@
+
+.MATLABDriveTag
+hue_cacert_*
+*.pem
+hue_dns-sd_search.txt
+huecon.mat

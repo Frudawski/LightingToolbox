@@ -41,9 +41,11 @@ for row = 1:size(specin,1)
     if Tcp > 5e3
         S = ciecct2spec(Tcp,lam);
     elseif (Tcp > 4e3) && (Tcp < 5e3)
-        S1 = 100.*planck(Tcp,lam,'CIE')./ciespec2unit(lam,spec,'y',1);
-        S2 = 100.*ciecct2spec(Tcp,lam)./ciespec2unit(lam,spec,'y',1);
-        S = (Tcp-4e3)./(5e3-4e3).*S1 + (5e3-Tcp)./(5e3-4e3).*S2;
+        RP = planck(Tcp,lam,'CIE');
+        RD = ciecct2spec(Tcp,lam);
+        S1 = 100.*RP./ciespec2unit(lam,RP,'y',1);
+        S2 = 100.*RD./ciespec2unit(lam,RD,'y',1);
+        S = (Tcp-4e3)./(5e3-4e3).*S2 + (5e3-Tcp)./(5e3-4e3).*S1;
     elseif Tcp < 4e3
         S = planck(Tcp,lam,'CIE');
     end

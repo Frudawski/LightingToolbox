@@ -33,10 +33,10 @@ S = planck(Tcp);
 [~,up,vp] = ciespec2uvw(lam,S);
 
 % determine delta uv distance
-d = sqrt((up'-u).^2+(vp'-v).^2);
+d = sqrt((up-u).^2+(vp-v).^2);
 
 % Duv direction
-dv = v-vp';
+dv = v-vp;
 ind = dv<0;
 d(ind) = -d(ind);
 
