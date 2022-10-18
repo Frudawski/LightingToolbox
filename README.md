@@ -47,4 +47,4 @@ Tested with version 7.1.0
 The Lighting Toolbox is documented with numerous function examples on: https://frudawski.de/ligthing-toolbox/
 
 ## Cite:
-Frederic Rudawski, *Lighting Toolbox for Matlab and Octave*, 2022, version 1.08, URL: https://github.com/Frudawski/LightingToolbox
+Frederic Rudawski, *Lighting Toolbox for Matlab and Octave*, 2022, version 1.09, URL: https://github.com/Frudawski/LightingToolbox
