@@ -32,7 +32,7 @@ xyz = ciespec2xyz(lambda,spectrum);
 x = xyz(:,1);
 y = xyz(:,2);
 
-uvw = ciespec2xyz(lambda,spectrum);
+uvw = ciespec2uvw(lambda,spectrum);
 u = uvw(:,1);
 v = uvw(:,2);
 
