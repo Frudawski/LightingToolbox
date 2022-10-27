@@ -15,7 +15,7 @@
 % See: https://www.frudawski.de/cieXYZ2xyz
 
 
-function xyz = cieXYZ2xyz(XYZ)
+function [xyz,x,y,z] = cieXYZ2xyz(XYZ)
 
 x = XYZ(:,1)./sum(XYZ,2);
 y = XYZ(:,2)./sum(XYZ,2);

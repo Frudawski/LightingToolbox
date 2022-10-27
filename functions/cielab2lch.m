@@ -23,18 +23,20 @@ b = lab(:,3);
 
 % transform a & b  to c & h
 c = (a.^2+b.^2).^(1/2);
-if a>=0 & b>=0
-    h = atand(b./a);
-elseif a<0 & b>=0
-    h = atand(b./a)+180;
-elseif a<0 & b<0
-    h = atand(b./a)+180;
-elseif a>=0 & b<0
-    h = atand(b./a)+360;
+for n = 1:length(a)
+    if a(n)>=0 & b(n)>=0
+        h(n) = atand(b(n)./a(n));
+    elseif a(n)<0 & b(n)>=0
+        h(n) = atand(b(n)./a(n))+180;
+    elseif a(n)<0 & b(n)<0
+        h(n) = atand(b(n)./a(n))+180;
+    elseif a>=0 & b<0
+        h(n) = atand(b(n)./a(n))+360;
+    end
 end
 
 % combine to LCh
-lch = [L c h];
+lch = [L c h'];
 
 
 
