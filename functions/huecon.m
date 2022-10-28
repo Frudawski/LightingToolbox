@@ -3,12 +3,12 @@
 % user
 % bridge id
 %
-% The function creates a new user i fneccessary.
+% The function creates a new user if fneccessary.
 %
 % usage: huecon() or huecon(ip)
 %
 % where: ip contains the ip-address as char or string (optional)
-% 
+%
 % Author: Frederic Rudawski
 % Date: 28.02.2022
 

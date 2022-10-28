@@ -113,7 +113,16 @@ for n = 1:length(ip)
 
 
     % system user name
-    user = char(java.lang.System.getProperty('user.name'));
+    % OCTAVE code
+    if exist('OCTAVE_VERSION', 'builtin')
+      if ispc
+        user = getenv('USERNAME');
+      else
+        [~,user] = system('echo %USERNAME%');
+      end
+    else
+      user = char(java.lang.System.getProperty('user.name'));
+    end
     % create user
     body = ['{\"devicetype\":\"MATLAB#',user,'\"}'];
     if ~isempty(cer)
@@ -172,7 +181,12 @@ for n = 1:length(ip)
                         connection{end}.cer = cer;
 
                         % save connection
-                        save(which('huecon.mat'),'connection')
+                        % OCTAVE code
+                        if exist('OCTAVE_VERSION', 'builtin')
+                          save -mat7-binary which('huecon.mat') 'connection'
+                        else
+                          save(which('huecon.mat'),'connection')
+                        end
                     end
                 catch
                 end
