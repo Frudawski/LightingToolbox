@@ -1,6 +1,6 @@
 % CIE Colour Rendering Index (CRI) function, Calculation according to CIE TR 13.3:1995
 %
-% Any errors in the data set or in results generated with the Lighting Toolbox 
+% Any errors in the data set or in results generated with the Lighting Toolbox
 % are not in the liability of the CIE nor me, see license.
 %
 % usage: [CRI,Ra] = cieCRI(lambda,spec,reference)
@@ -20,7 +20,7 @@
 % - reference allows the evaluation for other reference illuminants (optional)
 %
 % Reference:
-% CIE 13.3:1995: Method of measuring and specifying colour rendering properties 
+% CIE 13.3:1995: Method of measuring and specifying colour rendering properties
 % of light sources. Commission Internationale de l'Eclairage (CIE), Vienna Austria,
 % 1995, ISBN: 978 3 900734 57 2.
 % https://cie.co.at/publications/method-measuring-and-specifying-colour-rendering-properties-light-sources
@@ -96,12 +96,12 @@ vki = ltfround(5.520./(16.518+1.481.*(cr./ck).*cki-(dr./dk).*dki),4);
 % transformation to CIE 1964 chromaticity (uniform)
 Yr = ciespec2Y(lam,MCRspec);
 Yk = ciespec2Y(lam,MCTspec);
-Wki = 25.*(Yk).^(1/3)-17;
-Uki = 13.*Wki.*(uki-ur);
-Vki = 13.*Wki.*(vki-vr);
-Wri = 25.*(Yr).^(1/3)-17;
-Uri = 13.*Wri.*(uri-ur);
-Vri = 13.*Wri.*(vri-vr);
+Wki = ltfround(25.*(Yk).^(1/3)-17,4);
+Uki = ltfround(13.*Wki.*(uki-ur),4);
+Vki = ltfround(13.*Wki.*(vki-vr),4);
+Wri = ltfround(25.*(Yr).^(1/3)-17,4);
+Uri = ltfround(13.*Wri.*(uri-ur),4);
+Vri = ltfround(13.*Wri.*(vri-vr),4);
 
 % delta E - CIE colour difference formular (1964)
 deltaE = sqrt((Uri-Uki).^2 + (Vri-Vki).^2 + (Wri-Wki).^2 );
@@ -113,7 +113,7 @@ Ri = 100-4.6.*deltaE;
 Ri = ltfround(Ri);
 % general color rendering index Ra
 % Ra is defined as 1/8*sum(Ri(1:8))
-Ra = ltfround((1/8*sum(Ri(1:8,:))));
+Ra = (1./8.*sum(Ri(1:8,:)));
 
 % struct with usefull information
 CRI.Ra(1,row) = Ra;
