@@ -1,12 +1,18 @@
 % huename allows to change the name of a HUE device
 %
-% usage:
+% usage: resp = huename(deviceid,name,bridgenr,mode)
+%
+%        deviceid: is the HUE device number
+%        name: the name to bes set
+%        bridgenr: allows to specify the brdige
+%        mode: 'secure' (default) or 'allow-insecure' if a secure
+%               connection is not possible
 %
 % Author: Frederic Rudawski
 % Date: 28.04.2022
 
 
-function resp = huename(deviceid,name,bridgenr)
+function resp = huename(deviceid,name,bridgenr,mode)
 
 if ~exist('bridgenr','var')
     bridgenr = 1;
@@ -28,10 +34,11 @@ body = ['{\"name\":\"',name,'\"}'];
 body = strrep(body,' ','_'); 
 
 % rename request
-if ~isempty(cer)
+switch mode
+    case 'secure'
     [~,jsonresp] = system(['curl -g -s --cacert ',which(cer),' --request PUT --data ',body,' --resolve "',id,':443:',ip,'" https://',id,'/api/',user,'/lights/',deviceid]);
-else
-    warning('Insecure connection to hue bridge!')
+    case 'allow-insecure'
+    %warning('Insecure connection to hue bridge!')
     [~,jsonresp] = system(['curl -s -k --request PUT --data ',body,' https://',ip,'/api/',user,'/lights/',deviceid]);
 end
 resp = readjson(jsonresp);

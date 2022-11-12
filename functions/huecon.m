@@ -3,7 +3,7 @@
 % user
 % bridge id
 %
-% The function creates a new user if fneccessary.
+% The function creates a new user if neccessary.
 %
 % usage: huecon() or huecon(ip)
 %
@@ -15,53 +15,19 @@
 
 function connection = huecon(bridgenr)
 
-%if ~exist('bridgenr','var')
-%    bridgenr = 1;
-%end
+try
+    % look for huecon.mat file
+    load(which('huecon.mat'),'connection');
 
-%if ~exist('ip','var')
-    try
-        % look for huecon.mat file
-        load(which('huecon.mat'),'connection');
-
-        % test connection
-        %{
-        for n = 1:length(connection)
-            % connect to bridge
-            if ~isempty(connection{n}.cer)
-                [~,resp] = system(['curl --cacert ',which(connection{n}.cer),' --resolve "',connection{n}.id,':443:',connection{n}.ip,'" https://',connection{n}.id,'/api/0/config']);
-            else
-                warning('Insecure connection to hue bridge!')
-            end
-            resp = readjson(resp);
-            % if not hue bridge
-            if ~isempty(resp)
-                if ~strcmp(resp.name,'Philips hue')
-                    connection{n} = {};
-                end
-            else
-                connection{n} = {};
-            end
-        end
-        %}
-    catch
-
-        % find hue bridge ip
-        if ~exist('ip','var')
-            ip = hueip;
-        end
-        % create new user
-        connection = huenew(ip);
-    end
-%else
+catch
 
     % find hue bridge ip
-%    if ~exist('ip','var')
-%        ip = hueip;
-%    end
+    if ~exist('ip','var')
+        ip = hueip;
+    end
     % create new user
-%    connection = huenew(ip);
-%end
+    connection = huenew(ip);
+end
 
 if exist('bridgenr','var')
     connection = connection(bridgenr);

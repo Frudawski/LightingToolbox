@@ -44,7 +44,7 @@ if ispc
                 if ~isempty(HB)
 
                     % get bridge id
-                    for n = 1:length(HB)
+                    for n = 1%:length(HB)
                         % extract bridge name
                         bridge = str(HB(n):HB(n)+19);
                         % resolve id
@@ -65,7 +65,7 @@ if ispc
 
 
                     % get bridge ip
-                    for n = 1:length(HB)
+                    for n = 1%:length(HB)
                         % resolve ip
                         cmd = ['dns-sd -G v4 ',idaddress,'.local'];
                         system(['powershell ',hidden,' echo - & echo Resolve Hue bridge ip-address... & echo This Window should close after 5 seconds. & ',cmd,' >> ',p,'hue_dns-sd_search.txt &']);

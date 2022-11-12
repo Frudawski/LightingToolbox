@@ -1,9 +1,12 @@
 % The huelamps function lists all Philips HUE lamps available.
 %
-% usage: huelamps(lamp)
+% usage: huelamps(lamp,bridgenr,mode)
 %
 % where: lamp (optional) specifies the lamp number(s) (numeric or vector) or
-%        group (str/char).
+%             group (str/char).
+%        brdgenr allows to specify which bridge
+%        mode: 'secure' (default) or 'allow-insecure' if a secure
+%               connection is not possible
 %
 % Author: Frederic Rudawski
 % Date: 29.03.2022

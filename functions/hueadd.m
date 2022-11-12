@@ -1,17 +1,20 @@
 % hueadd add devices over thier serial number
 %
-% usage: resp = hueadd(serial,bridgenr)
+% usage: resp = hueadd(serial,bridgenr,mode)
 %
 % where: resp: is the response struct of the hue bridge
 %        serial: is one or more serial numbers char or cell-array, max 10
 %                devices in one function call.
 %        bridgenr: specifies which bridge to use, default 1
+%        mode: 'secure' (default) or 'allow-insecure' if a secure
+%               connection is not possible
+
 %
 % Author: Frederic Rudawski
 % Date: 27.04.2022
 
 
-function resp = hueadd(serial,bridgenr)
+function resp = hueadd(serial,bridgenr,mode)
 
 if ~exist('serial','var')
     error('Specify device serial number to add to hue bridge.')
@@ -19,11 +22,16 @@ end
 if ~exist('bridgenr','var')
     bridgenr = 1;
 end
+if ~exist('mode','var')
+    mode = 'secure';
+end
 
 % check that serial number input is cell
 h = whos('serial','var');
 if strcmp(h.class,'char')
-    serial{1} = serial;
+    s = serial;
+    clear serial
+    serial{1} = s;
 end
 
 % HUE bridge connection
@@ -39,11 +47,16 @@ cer = con{bridgenr}.cer;
     s = join(serial,'\",\"');
     body = ['{\"deviceid\":[\"',s{1},'\"]}'];
 
-    if ~isempty(cer)
-        [~,jsonresp] = system(['curl -s --cacert ',which(cer),' --request POST --data ',body,' --resolve "',id,':443:',ip,'" https://',id,'/api/',user,'/lights']);
-    else
-        warning('Insecure connection to hue bridge!')
-        [~,jsonresp] = system(['curl -s -k --request POST --data ',body,' https://',ip,'/api/',user,'/lights']);
+    switch mode
+        case 'secure'
+            %if ~isempty(cer)
+                [~,jsonresp] = system(['curl -s --cacert ',which(cer),' --request POST --data ',body,' --resolve "',id,':443:',ip,'" https://',id,'/api/',user,'/lights']);
+            %else
+            %    warning('Insecure connection to hue bridge!')
+            %    [~,jsonresp] = system(['curl -s -k --request POST --data ',body,' https://',ip,'/api/',user,'/lights']);
+            %end
+        case 'allow-insecure'
+            [~,jsonresp] = system(['curl -s -k --request POST --data ',body,' https://',ip,'/api/',user,'/lights']);
     end
     resp = readjson(jsonresp);
 
@@ -53,11 +66,12 @@ cer = con{bridgenr}.cer;
 
     pause(60)
 
-     if ~isempty(cer)
-        [~,jsonresp] = system(['curl -s --cacert ',which(cer),' --request GET --resolve "',id,':443:',ip,'" https://',id,'/api/',user,'/lights/new']);
-    else
-        warning('Insecure connection to hue bridge!')
-        [~,jsonresp] = system(['curl -s -k --request GET https://',ip,'/api/',user,'/lights/new']);
+    switch mode
+        case 'secure'
+            [~,jsonresp] = system(['curl -s --cacert ',which(cer),' --request GET --resolve "',id,':443:',ip,'" https://',id,'/api/',user,'/lights/new']);
+        case 'allow-insecure'
+            %warning('Insecure connection to hue bridge!')
+            [~,jsonresp] = system(['curl -s -k --request GET https://',ip,'/api/',user,'/lights/new']);
     end
 
     resp = readjson(jsonresp);

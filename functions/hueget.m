@@ -12,7 +12,9 @@
 %           - rules: which contains all the rules
 %         element: defines which element, e.g. 6 for lamp id nr 6.
 %         bridgenr: defines the hue bridge
-%         mode: "secure"/"allow-insecure"
+%         mode: 'secure' (default) or 'allow-insecure' if a secure
+%                connection is not possible
+%
 %
 % Author: Frederic Rudawski
 % Date: 28.02.2022
