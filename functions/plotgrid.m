@@ -2,7 +2,7 @@
 % the egrid function. The plot functions also extrapolates data outside the
 % mesh points.
 %
-% usage: plotgrid(x,y,data,extrap,mode,clabel,climits)
+% usage: plotgrid(x,y,data,mode,clabel,climits)
 %
 % where:
 % x and y are the coordinate matrices of the mesh grid
@@ -13,6 +13,7 @@
 % 
 % author: Frederic Rudawski
 % date: 12.12.2021
+% see: https://www.frudawski.de/plotgrid
 
 function plotgrid(x,y,Y,mode,clabel,climits)
 

@@ -20,6 +20,7 @@
 %                    'xy' setting.
 %           - 'xy' = CIE x & y chromaticity coordinates, n x 2 matrix.
 %           Overrules 'ct' setting.
+%           - 'connection' = 'secure' (default) or 'allow-insecure'
 %        For each group or lamp, different parameter values can be specified.
 %
 % Author: Frederic Rudawski

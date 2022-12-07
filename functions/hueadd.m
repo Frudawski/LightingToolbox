@@ -1,4 +1,4 @@
-% hueadd add devices over thier serial number
+% hueadd add devices over their serial number
 %
 % usage: resp = hueadd(serial,bridgenr,mode)
 %

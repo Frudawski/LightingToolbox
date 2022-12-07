@@ -19,8 +19,11 @@
 % Date: 30.11.2021
 % See: https://www.frudawski.de/plotcfibar
 
-function plotcfibar(CFI)
+function plotcfibar(CFI,mode)
 
+if ~exist('mode','var')
+    mode = 'num';
+end
 % CFI colours
 %lam = 380:780;
 %S = ciespec(lam,'D50');
@@ -35,8 +38,10 @@ for n = 1:size(RGB,1)
     h = fill([n-1 n-1 n n n-1],[0 CFI.Rfi(n) CFI.Rfi(n) 0 0],'r');
     set(h,'Facecolor',RGB(n,:));
     set(h,'Edgecolor',[1 1 1]);
-    text(0.5+n-1,-3,num2str(n),'HorizontalAlignment','Center','Rotation',90,'Fontsize',6)
-    text(0.5+n-1,3,num2str(ltfround(CFI.Rfi(n),1),'%2.1f'),'HorizontalAlignment','Center','Rotation',90,'Fontsize',6) 
+    if strcmp(mode,'num')
+        text(0.5+n-1,-3,num2str(n),'HorizontalAlignment','Center','Rotation',90,'Fontsize',6)
+        text(0.5+n-1,3,num2str(ltfround(CFI.Rfi(n),1),'%2.1f'),'HorizontalAlignment','Center','Rotation',90,'Fontsize',6)
+    end
     hold on
 end
 axis([-1 100 0 100])

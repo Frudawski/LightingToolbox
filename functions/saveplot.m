@@ -44,13 +44,13 @@ addOptional(p,'name',[],@(f) (isempty(f) || ischar(f)));
 addParameter(p,'handle',gcf,@ishandle)
 addParameter(p,'fileformat','png',@(f) ismember(f,{'png','pdf','bmp','tiff','jpg','svg','clipboard'}));
 addParameter(p,'resolution',300,@isnumeric)
-%addParameter(p,'linewidth',1,@isnumeric);
+addParameter(p,'linewidth',1,@isnumeric);
 addParameter(p,'papersize',[],@isvector);
 addParameter(p,'path','absolut',@(f) ismember(f,{'absolut','relative'}))
 addParameter(p,'popup','on',@(f) ismember(f,{'on','off'}))
 addParameter(p,'folder',pwd,@ischar)
 %addParameter(p,'rotate',0,@isnumeric)
-addParameter(p,'InvertHardcopy','off',@(f) ismember(f,{'on','off'}))
+addParameter(p,'InvertHardcopy','on',@(f) ismember(f,{'on','off'}))
 if exist('name','var')
     parse(p,name,varargin{:})
 else

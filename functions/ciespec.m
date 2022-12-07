@@ -94,6 +94,12 @@
 %        'LED-V2' = violet pumped phosphor-type LED
 %        'W' = spectral window transmitance for indoor daylight illuminants
 %
+%        none standard illuminants:
+%        'DXX'    = daylight with XX00 CCT 
+%        'DXXXX'  = daylight with XXXX CCT
+%        'BBXX'   = black body radiator with XX00 K
+%        'BBXXXX' = black body radiator with XXXX K
+%
 %        reference sources:
 %        ISO/CIE 11664-1:2019(E): Colorimetry - Part 1: CIE standard colorimetric observers. Commission International d’Eclairage (CIE), Vienna Austria, 2019.
 %        https://cie.co.at/publications/colorimetry-part-1-cie-standard-colorimetric-observers-0
@@ -583,11 +589,18 @@ switch reference
     if strcmp(reference(1),'D')
        % source: CIE 15:2018
        switch length(reference)
-         case 3
-           spec = interp1(300:5:830,ciecct2spec(str2double(reference(2:3))*100),lambda);
-         otherwise
-           spec = interp1(300:5:830,ciecct2spec(str2double(reference(2:end))),lambda);
+           case 3
+               spec = interp1(300:5:830,ciecct2spec(str2double(reference(2:3))*100),lambda);
+           otherwise
+               spec = interp1(300:5:830,ciecct2spec(str2double(reference(2:end))),lambda);
        end
+    elseif strcmp(reference(1:2),'BB')
+          switch length(reference)
+              case 4
+                spec = planck(str2double(reference(3:4)).*100,lambda);
+              otherwise
+                spec = planck(str2double(reference(3:end)),lambda);
+          end
     else
        error('Unsupported reference.')
     end

@@ -2,10 +2,11 @@
 %
 % usage: plotcribar(CRI)
 %
-% where: CRI is a single Colour Rendering Index struct, see ciecfi function.
+% where: CRI is a single Colour Rendering Index struct, see ciecri function.
 % 
 % Author: Frederic Rudawski
 % Date: 30.11.2021
+% see: https://www.frudawski.de/plotcribar
 
 function plotcribar(CRI)
 

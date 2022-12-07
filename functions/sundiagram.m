@@ -334,12 +334,12 @@ if exist('OCTAVE_VERSION', 'builtin')
     warning ('on', 'Octave:data-file-in-path')
 
     RTick = 0:10:90;
-    RTickLabel = {'90°','80°','70°','60°','50°','40°','30°','20°','10°',''};
+    RTickLabel = {'90\deg','80\deg','70\deg','60\deg','50\deg','40\deg','30\deg','20\deg','10\deg',''};
     ThetaTick = 0:10:350;
-    ThetaTickLabel = fliplr({'E','80°','70°','60°','50°','40°','30°','20°','10°',...
-        'N','350°','340°','330°','320°','310°','300°','290°','280°',...
-        'W','260°','250°','240°','230°','220°','210°','200°','190°',...
-        'S','170°','160°','150°','140°','130°','120°','110°','100°'});
+    ThetaTickLabel = fliplr({'E','80\deg','70\deg','60\deg','50\deg','40\deg','30\deg','20\deg','10\deg',...
+        'N','350\deg','340\deg','330\deg','320\deg','310\deg','300\deg','290\deg','280\deg',...
+        'W','260\deg','250\deg','240\deg','230\deg','220\deg','210\deg','200\deg','190\deg',...
+        'S','170\deg','160\deg','150\deg','140\deg','130\deg','120\deg','110\deg','100\deg'});
 
     set(pax,'ttick',ThetaTick);
     set(pax,'rtick',RTick);
@@ -370,7 +370,7 @@ if exist('OCTAVE_VERSION', 'builtin')
     for k = 1:numel(labels)
         set(labels(k), 'String', RTickLabel(end-k+1));
     end
-
+    title(['longitude: ',num2str(coord(1)),'°   latitude: ',num2str(coord(2)),'°'])
 else
     axis([0 360 0 90])
     pax.ThetaTick = 0:10:350;
@@ -380,7 +380,7 @@ else
         'S','170°','160°','150°','140°','130°','120°','110°','100°'};
     pax.RTick = 10:10:80;
     pax.RTickLabel = {'80°','70°','60°','50°','40°','30°','20°','10°'};
+    %set(gca,'TickLabelInterpreter','latex')
 end
 
 title(['longitude: ',num2str(coord(1)),'°   latitude: ',num2str(coord(2)),'°'])
-
