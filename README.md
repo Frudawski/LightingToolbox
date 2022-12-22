@@ -44,7 +44,7 @@ Tested with version 7.1.0
 6. The Lighting Toolbox is ready to use.
 
 ## Documentation:
-The Lighting Toolbox is documented with numerous function examples on: https://frudawski.de/ligthing-toolbox/
+The Lighting Toolbox is documented with numerous function examples on: https://frudawski.de/lighting-toolbox/
 
 ## Cite:
 Frederic Rudawski, *Lighting Toolbox for Matlab and Octave*, 2022, version 1.18, URL: https://github.com/Frudawski/LightingToolbox
