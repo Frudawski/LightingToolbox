@@ -12,7 +12,7 @@ The Lighting Toolbox contains numerous Matlab/Octave functions for lighting rese
 
 The Lighting Toolbox contains various reference spectra provided by the Commission International d’Éclairage (CIE – International Commission on Illumination). The reference data is sourced from the CIE and permission to use the data in the Lighting Toolbox was granted. Any errors in the data set or in results generated with the Lighting Toolbox are not in the liability of the CIE nor me, see licence.
 
-## LigthingToolbox setup:
+## LightingToolbox setup:
 **MATLAB:**
 Tested with version 2022a
 1. Download the Lighting Toolbox and move it to a location of your choice.
