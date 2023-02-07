@@ -32,7 +32,7 @@ Tested with version 7.1.0
 3. Add the Lighting Toolbox to Octave's search path:
     - type: ```addpath(‘PATH_TO_LIGHTING_TOOLBOX\functions’)``` in the command window
 4. Optional: install image package:
-    - Type: ```pkg install package -forge image``` in the command window
+    - Type: ```pkg install -forge image``` in the command window
     - Recommended: load image package at startup:
       * Type: ```edit octaverc``` in command window
       * Add line: ```pkg load image``` to octaverc file
