@@ -47,8 +47,8 @@ parse(p,x,y,c,varargin{:})
 ls = p.Results.LineStyle;
 mk = p.Results.Marker;
 lw = p.Results.LineWidth;
-if isnumeric(lw)
-    lw = repmat(lw,size(y,2));
+if isscalar(lw)
+    lw = repmat(lw,size(y,1));
 end
 
 h(1) = plot(x,y(1,:),'Color',c(1,:),'LineStyle',ls{1},'Marker',mk{1},'LineWidth',lw(1));
@@ -58,3 +58,5 @@ for i = 2:size(y,1)
 end
 hold off
 end
+
+

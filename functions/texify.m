@@ -87,9 +87,6 @@ else
         %set(handle.RTickLabel,'Interpreter','Latex')
     end
 
-
-
-
     % change title
     if strcmp(mode,'change')
         t = correctstr(handle.Title.String);
@@ -116,8 +113,16 @@ else
         set(str(n),'Interpreter','Latex')
     end
 
-end
+    % check for colorbar
+    C = findall(gcf,'type','ColorBar');
+    if ~isempty(C)
+        for n = 1:length(C)
+            set(C(n),'TickLabelInterpreter','Latex');
+            C(n).Label.Interpreter = 'Latex';
+        end
+    end
 
+end
 end
 
 

@@ -28,6 +28,7 @@ addParameter(p,'Color',[0   0.4470   0.7410],@isvector)
 addParameter(p,'ylabel','',@ischar)
 addParameter(p,'max',[],@isnumeric)
 addParameter(p,'legend','on',@ischar)
+addParameter(p,'normalize','off',@ischar)
 parse(p,lambda,data,varargin{:})
 
 % y label
@@ -41,8 +42,14 @@ color = p.Results.Color;
 check = sum(data,2);
 check = find(check == 0);
 data(check,:) = [];
+m = mean(data,1);
 datamin = min(data,[],1);
 datamax = max(data,[],1);
+if strcmp(p.Results.normalize,'on')
+    datamin = datamin-m;
+    datamax = datamax-m;
+    m = zeros(size(m));
+end
 var = sum(((data-mean(data,1)).^2),1)./(size(data,1)-1);
 std = sqrt(var);
 
@@ -54,8 +61,8 @@ c2 = color./1.75;
 % plot
 p1 = patch([lambda fliplr(lambda)],[datamax fliplr(datamin)],color,'EdgeColor','none');
 hold on
-p2 = patch([lambda fliplr(lambda)],[mean(data)+std fliplr(mean(data)-std)],c1,'EdgeColor','none');
-p3 = plot(lambda,mean(data,1),'Color',c2);
+p2 = patch([lambda fliplr(lambda)],[m+std fliplr(m-std)],c1,'EdgeColor','none');
+p3 = plot(lambda,m,'Color',c2);
 if strcmp(p.Results.legend,'on')
   L = legend([p1 p2 p3],'min/max','standard deviation','mean');
 end

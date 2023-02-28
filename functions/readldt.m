@@ -22,7 +22,7 @@ info = textscan(fid,'%s',26,'delimiter','\n');
 info = info{1};
 
 % header elements
-str = {'ID','type','symmetry','number_of_C_planes','delta_C','number_of_gamma_planes','delta_gamma','protocol_number','luminaire_type','luminaire_number','filename','date_and_user','length','width','height','luminous_length','luminous_width','luminous_heigth_C0','luminous_heigth_C90','luminous_heigth_C180','luminous_heigth_C270','luminous_flux_in_lower_hemisphere','luminaire_efficiency','lumininous_intensity_factor','tilt_angle','number_of_lamp_sets'};
+str = {'ID','type','symmetry','number_of_C_planes','delta_C','number_of_gamma_planes','delta_gamma','protocol_number','luminaire_type','luminaire_number','filename','date_and_user','length','width','height','luminous_length','luminous_width','luminous_heigth_C0','luminous_heigth_C90','luminous_heigth_C180','luminous_heigth_C270','luminous_flux_in_lower_hemisphere','luminaire_efficiency','luminous_intensity_factor','tilt_angle','number_of_lamp_sets'};
 transform = [0 1 1 1 1 1 1 0 0 0 0 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1];
 for n = 1:26
     if transform(n)
@@ -117,7 +117,7 @@ switch header.symmetry
         I = [I fliplr(I(:,2:end-1))];
         ldt.I = I;
 end
-ldt.I = ldt.I.*header.lumininous_intensity_factor;
+ldt.I = ldt.I.*header.luminous_intensity_factor;
 
 % close file
 fclose(fid);

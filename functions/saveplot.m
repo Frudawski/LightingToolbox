@@ -86,9 +86,9 @@ try
     %h2.InvertHardcopy = 'off';
     set(h2,'PaperPositionMode','auto','visible','off','units',unit,'PaperPosition',pos,'outerposition', outpos,'PaperOrientation',orientation,'PaperSize',ps)
     %set(h2,'visible','on')
-    catch
+catch
     h2 = figure;
-    h2.InvertHardcopy = 'off';
+    %h2.InvertHardcopy = 'off';
     set(h2,'color','w');
     set(h2,'PaperPositionMode','auto','units','normalized','visible','off');
 end
