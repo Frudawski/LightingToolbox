@@ -51,12 +51,12 @@ b = b-2*bz;
 
 if isequal(idx(2),2)
     x = b;
-    if v(2)/v(1)>2
+    if v(2)/v(1)>=2
         x = d;
     end
 else
     x = d;
-    if v(1)/v(2)>2
+    if v(2)/v(1)>=2
         x = b;
     end
 end
