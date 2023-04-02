@@ -37,7 +37,7 @@ tmax = zeros(1,size(Le,1)).*NaN;
 
 % BLH determination depending on exposure time
 if t <= 1e4
-    b = [ciespec2unit(lam,Le,'BLH').*t]';
+    b = [ciespec2unit(lam,Le,'BLH',1).*t]';
     for n = 1:length(b)
         if b(n) > 1e6
             hazard{n} = 'yes';
@@ -46,7 +46,7 @@ if t <= 1e4
         end
     end
 else
-    b = ciespec2unit(lam,Le,'BLH')';
+    b = ciespec2unit(lam,Le,'BLH',1)';
     for n = 1:length(b)
         if b(n) > 1e2
             hazard{n} = 'yes';
@@ -59,7 +59,7 @@ end
 % maximum permissible exposure time
 for n = 1:size(Le,1) 
     if sum(Le(n,:)) > 100
-        tmax(n) = 1e6./sum(Le(n,:));
+        tmax(n) = 1e6./b;
     end
 end
 

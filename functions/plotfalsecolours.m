@@ -130,7 +130,8 @@ if exist('climits','var')
     case 'lin'
       caxis(climits)
     case 'log'
-      caxis(log10(climits));
+      %caxis(log10(climits));
+      caxis(climits)
     end
 end
 title(titletext)
