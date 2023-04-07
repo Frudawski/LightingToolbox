@@ -1,8 +1,8 @@
 % plot aopic-image from the AO-dosimeter
 %
-% usage: plotaopic(im,mode,rotation)
+% usage: plotaopic(im,channel,mode,rotation)
 %
-% where: mode: specifies the plot mode:
+% where: channel: specifies the plot mode:
 %           - 'aopic' for sc,mc,lc,rh,mel and VL plot (default)
 %           - 'sc' for short cone plot only
 %           - 'mc' for middle cone plot only
@@ -10,6 +10,7 @@
 %           - 'rh' for rhodopic plot only
 %           - 'mel' for melanopic plot only
 %           - 'VL' for luminance V(lambda) plot only
+%        mode: 'lin' or 'log'
 %        rotation: image rotation in 90 degree steps
 %
 % Reference:

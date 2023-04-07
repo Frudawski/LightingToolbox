@@ -347,7 +347,7 @@ poly = [259.158576051780	623.989409950380	601.077045274027	599.734332974289	598.
 try
     mask = poly2mask(poly(1,:),poly(2,:),1001,1001);
 catch
-  [xgrid,ygrid] = meshgrid(1:1001,1:1001);
+  [xgrid,ygrid] = meshgrid(0:1000,0:1000);
    mask = inpolygon(xgrid(:),ygrid(:),poly(1,:),poly(2,:));
    mask = reshape(mask,1001,1001);    
 end
