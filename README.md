@@ -4,7 +4,7 @@ The Lighting Toolbox contains numerous Matlab/Octave functions for lighting rese
 **Categories:**
 - Advanced lighting calculations
 - Colorimetric functions
-- Daylight functions
+- Daylight related functions
 - Visualisation functions
 - Image processing functions
 - Lighting control functions
