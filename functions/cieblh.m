@@ -59,7 +59,7 @@ end
 % maximum permissible exposure time
 for n = 1:size(Le,1) 
     if sum(Le(n,:)) > 100
-        tmax(n) = 1e6./b;
+        tmax(n) = 1e6./b(n);
     end
 end
 
