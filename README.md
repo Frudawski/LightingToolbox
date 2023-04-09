@@ -2,13 +2,13 @@
 The Lighting Toolbox contains numerous Matlab/Octave functions for lighting research calculations, plotting and colorimetry. It is available under BSD3.0 licence.
 
 **Categories:**
-- Calculation functions
+- Advanced lighting calculations
 - Colorimetric functions
-- Daylight functions
-- Plot functions
-- Image functions
+- Daylight related functions
+- Visualisation functions
+- Image processing functions
 - Lighting control functions
-- Measurement functions
+- Light measurement functions
 
 The Lighting Toolbox contains various reference spectra provided by the Commission International d’Éclairage (CIE – International Commission on Illumination). The reference data is sourced from the CIE and permission to use the data in the Lighting Toolbox was granted. Any errors in the data set or in results generated with the Lighting Toolbox are not in the liability of the CIE nor me, see licence.
 
@@ -47,4 +47,4 @@ Tested with version 7.1.0
 The Lighting Toolbox is documented with numerous function examples on: https://frudawski.de/lighting-toolbox/
 
 ## Cite:
-Frederic Rudawski, *Lighting Toolbox for Matlab and Octave*, 2022, version 1.22, URL: https://github.com/Frudawski/LightingToolbox, DOI: 10.5281/zenodo.7275778
+Frederic Rudawski, *Lighting Toolbox for Matlab and Octave*, 2022, version 1.23, URL: https://github.com/Frudawski/LightingToolbox, DOI: 10.5281/zenodo.7275778
