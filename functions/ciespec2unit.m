@@ -34,6 +34,11 @@
 %
 % References:
 %
+% ISO/CIE 23529:2023 Photometry — The CIE system of physical photometry. 
+% Commission International de l3Éclairage (CIE), Vienna Austria, 2023,
+% (DOI: 10.25039/IS0.CIE.23539.2023)
+% https://cie.co.at/publications/photometry-cie-system-physical-photometry-3
+%
 % ISO/CIE 11664-1:2019(E): Colorimetry - Part 1: CIE standard colorimetric observers.
 % Commission International de l’Éclairage (CIE), Vienna Austria, 2019.
 % https://cie.co.at/publications/colorimetry-part-1-cie-standard-colorimetric-observers-0
@@ -54,7 +59,7 @@
 % https://cie.co.at/publications/photobiological-safety-lamps-and-lamp-systems-s-curit-photobiologique-des-lampes-et-des
 %
 % Author: Frederic Rudawski
-% Date: 17.11.2019 (Sunday) - last edited: 22.06.2021
+% Date: 17.11.2019 (Sunday) - last edited: 25.04.2023
 % See: https://www.frudawski.de/ciespec2unit
 
 function m = ciespec2unit(lambda,spec,reference,K,maxdlam)
@@ -127,13 +132,14 @@ for c = 1:size(reference,2)
     if ~exist('K','var')
         switch reference{c}
             case 'V-L'
-                k = 1700.05; % lm/W
+                k = 1700.13; % lm/W | ISO/CIE 23529:2023
             case {'sc','mc','lc','rh','mel','a-opic','aopic'}
                 k = 1;
             case 'weightingfunction'
                 k = 1;
             otherwise
-                k = 683.002; % lm/W
+                k = 683.002;    % lm/W | ISO/CIE 23529:2023
+                km10 = 683.601; % lm/W | ISO/CIE 23529:2023
         end
     else
         k = K;
