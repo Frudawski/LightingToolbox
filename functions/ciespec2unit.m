@@ -86,7 +86,7 @@ if ~exist('maxdlam','var')
 end
 
 lam = lambda;
-[lambda,idx] = sort(lambda);
+[lambda,idx] = sort(lambda,2);
 
 % spectral range
 range(1) = lambda(1);
@@ -137,9 +137,10 @@ for c = 1:size(reference,2)
                 k = 1;
             case 'weightingfunction'
                 k = 1;
+            case {'y10','x10','z10','xyz10'}
+                k = 683.601; % lm/W | ISO/CIE 23529:2023
             otherwise
-                k = 683.002;    % lm/W | ISO/CIE 23529:2023
-                km10 = 683.601; % lm/W | ISO/CIE 23529:2023
+                k = 683.002; % lm/W | ISO/CIE 23529:2023
         end
     else
         k = K;

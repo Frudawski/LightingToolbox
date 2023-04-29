@@ -1,8 +1,8 @@
 % Calculate planck's radiant exitance M for a given temperature T in K.
 %
-% usage: [spec,lam,x,y,u,v] = planck(T,lam)
-% e.g.:  [spec,lam] = planck(10000,380:780);
-%        plot(lam,spec)
+% usage: [spec,x,y,u,v] = planck(T,lam)
+% e.g.:  spec = planck(10000,380:780);
+%        plot(380:780,spec)
 %
 % If the spectral range lies within or overlap 360 nm - 830 nm the function
 % calculates the x,y and u,v color coordinates from the CIE 1931 and CIE 1960
