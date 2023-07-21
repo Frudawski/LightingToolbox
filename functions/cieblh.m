@@ -27,7 +27,7 @@
 % https://cie.co.at/publications/photobiological-safety-lamps-and-lamp-systems-s-curit-photobiologique-des-lampes-et-des
 %
 % Author: Frederic Rudawski
-% Date: 29.05.2021
+% Date: 29.05.2021, last update: 21.07.2023
 % See: https://www.frudawski.de/cieblh
 
 function blh = cieblh(lam,Le,t)
@@ -38,6 +38,7 @@ tmax = zeros(1,size(Le,1)).*NaN;
 % BLH determination depending on exposure time
 if t <= 1e4
     b = [ciespec2unit(lam,Le,'BLH',1).*t]';
+    T = t;
     for n = 1:length(b)
         if b(n) > 1e6
             hazard{n} = 'yes';
@@ -46,6 +47,7 @@ if t <= 1e4
         end
     end
 else
+    T = ones(size(t));
     b = ciespec2unit(lam,Le,'BLH',1)';
     for n = 1:length(b)
         if b(n) > 1e2
@@ -59,7 +61,7 @@ end
 % maximum permissible exposure time
 for n = 1:size(Le,1) 
     if sum(Le(n,:)) > 100
-        tmax(n) = 1e6./b(n);
+        tmax(n) = 1e6./b(n)*T(n);
     end
 end
 
