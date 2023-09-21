@@ -3,7 +3,7 @@ The Lighting Toolbox contains numerous Matlab/Octave functions for lighting rese
 
 **Categories:**
 - Radiometry
-- Phomotmetry
+- Photometry
 - α-opic metrology
 - Colorimetry
 - Daylight
