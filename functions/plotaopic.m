@@ -77,9 +77,13 @@ switch channel
             Ticks = log10(ex);
             TickLabels = ex;
             c = colorbar;
-            set(c,'ytick',Ticks)
-            set(c,'yticklabel',TickLabels)
-            caxis([Ticks(1) Ticks(end)])
+            if exist('OCTAVE_VERSION', 'builtin')
+                set(c,'ytick',Ticks)
+                set(c,'yticklabel',TickLabels)
+                caxis([Ticks(1) Ticks(end)])
+            else
+                caxis([ex1 ex2])
+            end
           end
         end
     case 'sc'
