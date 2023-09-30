@@ -30,7 +30,7 @@ for n = 1:length(a)
         h(n) = atand(b(n)./a(n))+180;
     elseif a(n)<0 & b(n)<0
         h(n) = atand(b(n)./a(n))+180;
-    elseif a>=0 & b<0
+    elseif a(n)>=0 & b(n)<0
         h(n) = atand(b(n)./a(n))+360;
     end
 end
