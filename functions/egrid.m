@@ -1,7 +1,7 @@
 % egrid returns a mesurement grid according to DIN 5035-6 or EN 12464,
 % with the corresponding measurement points for a given measurement area.
 %
-% usage: [x,y,numx,numy] = DINgrid(width,length,border,mode,[numx numy])
+% usage: [x,y,numx,numy] = egrid(width,length,border,mode,[numx numy])
 %
 % where: - x and y are the meshpoints coordinates matrices in m
 %        - numx and numy are the number of points in x and y dimension
@@ -27,6 +27,9 @@
 % EN 12464-1:2021: Light and lighting - Lighting of work places - Part 1:
 % Indoor work places. 2021.
 % https://www.en-standard.eu/bs-en-12464-1-2021-light-and-lighting-lighting-of-work-places-indoor-work-places/
+%
+% DIN 5035-6:2006: Beleuchtung mit künstlichem Licht, Teil 6: Messung und Bewertung. 2006.
+% https://www.beuth.de/de/norm/din-5035-6/907574086
 %
 % Author: Frederic Rudawski
 % Date: 10.06.2020 - last edited: 16.07.2020
