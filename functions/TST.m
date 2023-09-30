@@ -213,7 +213,7 @@ for i = 1:size(datevar,1)
 
     localtime_min = t2;
     localtime_sec = t3;
-    localtime(i,:) = [localtime_hrs,':',localtime_min,':',localtime_sec];
+    localtime(i,:) = [t1,':',t2,':',t3];
 
 
 end
