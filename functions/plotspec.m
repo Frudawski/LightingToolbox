@@ -58,11 +58,32 @@ else
 end
 hold on
 
-% plot spectrum
+%{
 for k = 1:size(x,2)-1
-    p = patch([x(k)-0.5*dlam x(k)+0.5*dlam x(k)+0.5*dlam x(k)-0.5*dlam x(k)-0.5*dlam],[0 0 y(k+1) y(k) 0],cmap(k,:));  % Plot the histogram
-    set(p,'EdgeColor','none')
+   p = patch([x(k)-0.5*dlam x(k)+0.5*dlam x(k)+0.5*dlam x(k)-0.5*dlam x(k)-0.5*dlam],[0 0 y(k+1) y(k) 0],cmap(k,:));  % Plot the histogram
+   set(p,'EdgeColor','none')
 end
+%}
+
+% plot spectrum
+%
+if exist('OCTAVE_VERSION', 'builtin')
+    % OCTAVE
+    for k = 1:size(x,2)-1
+        p = patch([x(k)-0.5*dlam x(k)+0.5*dlam x(k)+0.5*dlam x(k)-0.5*dlam x(k)-0.5*dlam],[0 0 y(k+1) y(k) 0],cmap(k,:));  % Plot the histogram
+        set(p,'EdgeColor','none')
+    end
+else
+    % MATLAB - not working for smaller wavelength regions than 380:780
+    X = [min(x) x max(x)];
+    Y = [0 y' 0];
+    Z = [380 380:dlam:780 780];
+    C = [cmap(1,:); cmap; cmap(end,:)];
+    p = patch(X,Y,Z);
+    set(p,'EdgeColor','none')
+    colormap(C)
+end
+%}
 
 % labels
 xlabel('\lambda in nm');
