@@ -45,8 +45,8 @@ switch mode
     % constants
     % http://physics.nist.gov/cgi-bin/cuu/Value?c11strc
     % http://physics.nist.gov/cgi-bin/cuu/Value?c22ndrc
-    c1 = 3.741771852*10^(-16);
-    c2 = 1.438776877*10^(-2);
+    c1 = 3.741771852e-16;
+    c2 = 1.438776877e-2;
   case 'CIE'
     % CIE TR 224
     c1 = 3.74183e-16;
