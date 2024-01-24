@@ -40,12 +40,15 @@ ref = ciespec(lam,'CRI');
 for row = 1:size(spec,1)
 
 % CCT and u,v coordinates of test illuminant
-[~,uk,vk] = ciespec2uvw(lam,spec(row,:));
+%[~,uk,vk] = ciespec2uvw(lam,spec(row,:));
+[~,x,y] = ciespec2xyz(lam,spec(row,:));
+[uk,vk] = ciexy2uv(x,y);
 uk = ltfround(uk,4);
 vk = ltfround(vk,4);
 
 %Tc = RobertsonCCT('u',uk,'v',vk);
-Tc = CCT('u',uk,'v',vk,'accuracy',0.0000000000001,'mode','CIE');
+%Tc = CCT('u',uk,'v',vk,'accuracy',0.0000000000001,'mode','CIE');
+Tc = round(ciexy2cct(x,y));
 
 % reference illuminant
 if Tc < 5000
@@ -55,7 +58,7 @@ if Tc < 5000
     %[ur,vr] = ciespec2uv(lam,Ispec)
 else
     illuminant = 'Daylight';
-    [Rspec,Ilam,Ix,Iy] = ciecct2spec(Tc);
+    [Rspec,Ilam,Ix,Iy] = ciecct2spec(Tc,lam);
     Rspec = interp1(Ilam,Rspec,lam);
     [ur,vr] = ciexy2uv(Ix,Iy);
 end

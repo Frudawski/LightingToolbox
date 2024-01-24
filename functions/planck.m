@@ -1,6 +1,6 @@
 % Calculate planck's radiant exitance M for a given temperature T in K.
 %
-% usage: [spec,x,y,u,v] = planck(T,lam)
+% usage: [spec,x,y,u,v] = planck(T,lam,mode)
 % e.g.:  spec = planck(10000,380:780);
 %        plot(380:780,spec)
 %
@@ -8,8 +8,12 @@
 % calculates the x,y and u,v color coordinates from the CIE 1931 and CIE 1960
 % chromaticity.
 %
-% The wavelength parameter lam is optional, if not given the default value
-% 360:830 is used.
+% The wavelength parameter lam is optional, if not given the default values
+% 360:830 are used.
+%
+% mode specifies the constants c1 and c2 in the calculation, 'exact' for 
+% c1 = 3.741771852e-16 and c2 = 1.438776877e-2 or 'CIE' for in CIE
+% pupblication often used c1 = 3.74183e-16 and c2 = 1.4388e-2.
 %
 % Reference:
 % Günther Wyszecki, W. S. Stiles: Colour Science - Concepts and Methods, 
@@ -22,7 +26,7 @@
 %
 % Author: Frederic Rudawski
 % Date: 08.07.2016
-% last updated: 26.05.2021
+% last updated: 04.01.2023
 % See: https://www.frudawski.de/planck
 
 function [M,x,y,u,v] = planck(T,lam,mode)

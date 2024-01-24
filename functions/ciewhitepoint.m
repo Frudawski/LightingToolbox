@@ -29,14 +29,25 @@
 % updated: 24.11.2019 (Sunday), 04.11.2021
 % See: https://www.frudawski.de/ciewhitepoint
 
-function [wp,abc] = ciewhitepoint(reference,obs)
+function [wp,abc] = ciewhitepoint(reference,obs,lambda,n,roundmode)
 
 % set observer
-if ~exist('sys','var')
+if ~exist('obs','var')
     obs = 'xyz';
 end
 
 % get whitepoint
-lambda = 300:830;
-spec = ciespec(lambda,reference);
+if ~exist('lambda','var')
+    lambda = 300:830;
+end
+if ~exist('roundmode','var')
+    roundmode = 'none';
+end
+
+% number of significant digits
+if ~exist('n','var')
+    n = 128;
+end
+
+spec = ciespec(lambda,reference,[],[],n,roundmode);
 [wp,abc] = ciespec2wp(lambda,spec,obs);

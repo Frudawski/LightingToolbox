@@ -36,14 +36,19 @@ SPEC = spec./max(spec,[],2).*100;
 lambda1 = NaN(1,size(spec,1));
 lambda2 = NaN(1,size(spec,1));
 for n = 1:size(SPEC,1)
-    % interpolate wavelength left from peak at threshold level
-    [v,ind] = unique(SPEC(n,1:idx(n)),'last');
-    w = lam(n,1:idx(n));
-    lambda1(n) = interp1(v,w(ind),threshold,method);
-    % interpolate wavelength right from peak at threshold level
-    [v,ind] = unique(SPEC(n,idx(n):end),'first');
-    w = lam(n,idx(n):end);
-    lambda2(n) = interp1(v,w(ind),threshold,method);
+    try
+        % interpolate wavelength left from peak at threshold level
+        [v,ind] = unique(SPEC(n,1:idx(n)),'last');
+        w = lam(n,1:idx(n));
+        lambda1(n) = interp1(v,w(ind),threshold,method);
+        % interpolate wavelength right from peak at threshold level
+        [v,ind] = unique(SPEC(n,idx(n):end),'first');
+        w = lam(n,idx(n):end);
+        lambda2(n) = interp1(v,w(ind),threshold,method);
+    catch
+        lambda1(n) = NaN;
+        lambda2(n) = NaN;
+    end
 end
 sbw = lambda2-lambda1;
 
