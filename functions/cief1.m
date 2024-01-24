@@ -23,9 +23,9 @@
 % Date: 11.08.2021, last edited: 08.12.2021
 % See: https://www.frudawski.de/cief1
 
-function F1 = cief1(lam,spec,ref)
+function f1 = cief1(lam,spec,ref)
 
-F1 = zeros(size(spec,1),1).*NaN;
+f1 = zeros(size(spec,1),1).*NaN;
 
 % check reference input
 if ~exist('ref','var')
@@ -42,5 +42,5 @@ end
 for n = 1:size(spec,1)
     srel = spec(n,:).*trapz(ref.*A)./trapz(spec(n,:).*A);
     f1 = trapz(abs(srel-ref))./trapz(ref);
-    F1(n) = ltfround(f1.*100,14);
+    f1(n) = ltfround(f1.*100,14);
 end

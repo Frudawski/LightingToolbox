@@ -42,7 +42,6 @@ addRequired(p,'c', @ismatrix);
 addParameter(p,'LineStyle',repmat({'-'},1,size(y,1)),@iscell)
 addParameter(p,'Marker',repmat({'none'},1,size(y,1)),@iscell)
 addParameter(p,'LineWidth',1)
-addParameter(p,'Mode','lin')
 parse(p,x,y,c,varargin{:})
 
 ls = p.Results.LineStyle;

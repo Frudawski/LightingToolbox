@@ -21,19 +21,13 @@ function d = duv(u,v,method)
 if ~exist('method','var')
     method = 'Robertson';
 end
-% check for method or Tcp
-if ischar(method)
-    % get correspondig Tcp
-    %Tcp = cieuv2cct(u,v,method);
-    [x,y] = cieuv2xy(u,v);
-    Tcp = ciexy2cct(x,y,method);
-else
-    Tcp = method;
-end
+
+% get correspondig Tcp
+Tcp = cieuv2cct(u,v,method);
 
 % create  planck source(s)
 lam = 360:830;
-S = planck(Tcp,lam,'CIE');
+S = planck(Tcp);
 
 % determine u and v of planck source(s)
 [~,up,vp] = ciespec2uvw(lam,S);

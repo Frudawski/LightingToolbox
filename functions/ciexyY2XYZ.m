@@ -19,16 +19,6 @@
 
 function [XYZ,X,Y,Z] = ciexyY2XYZ(x,y,Y)
 
-if size(x,1) < size(x,2)
-    x = x';
-end
-if size(y,1) < size(y,2)
-    y = y';
-end
-if size(Y,1) < size(Y,2)
-    Y = Y';
-end
-
 % z determination
 z = 1-x-y;
 
