@@ -1,5 +1,5 @@
 % Judd spectral daylight reconstruction from CCT in 5 nm steps from 300 nm
-% to 830 nm as in CIE 15:2004
+% to 830 nm as in CIE 15:2004 considering NOTE 6 on p. 13.
 %
 % usage: [spectrum,wavelength,xd,yd] = cieCCT2spec(Tc)
 %
@@ -23,7 +23,7 @@
 % last edited: 26.05.2021
 % See: https://www.frudawski.de/ciecct2spec
 
-function [spec,lambda,xd,yd] = ciecct2spec(Tc,lam,Y,W)
+function [spec,lambda,xd,yd] = ciecct2spec(Tc,lam,Y,W,df)
 
 % check input
 if ~exist('Y','var')
@@ -32,6 +32,13 @@ end
 if ~exist('W','var')
     W = 'VL';
 end
+
+% apply factor as demanded in CIE 15:2018 p. 13 note 6:
+if ~exist('f','var')
+    df = 1.4388/1.4380;
+end
+% apply factor to Tc
+Tc = Tc.*df;
 
 % Judd eigenvectors
 % row 1: wavelength in nm
@@ -67,8 +74,8 @@ end
 
 % weighting factors of eigenvectors
 m  = 0.0241+0.2562*xd-0.7341*yd;
-M1 = (-1.3515-1.7703.*xd+5.9114.*yd)./m;
-M2 = (0.03000-31.4424.*xd+30.0717.*yd)./m;
+M1 = ltfround((-1.3515-1.7703.*xd+5.9114.*yd)./m,3);  % see NOTE 6 on p. 13 in CIE15:2018
+M2 = ltfround((0.0300-31.4424.*xd+30.0717.*yd)./m,3); % see NOTE 6 on p. 13 in CIE15:2018
 
 % spectral reconstruction
 SD = ones(length(Tc),size(S,2)).*NaN;
