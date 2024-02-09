@@ -20,8 +20,8 @@ if isempty(ip)
     id = {};
 
     % TODO: full zero network configuration
-    % Apple -> Bonjour, Linux -> avahi, Windows -> install bonjour
-    [IP,id] = huemdns;
+    % Apple -> not yet implemented, Linux -> avahi, Windows -> install bonjour
+    [IP,id] = huemdns({},2,'');
     
     % fall back: hue discover end point
     if isempty(IP)
@@ -95,6 +95,5 @@ else
     id{1} = resp.bridgeid;
     IP{1} = ip;
 end
-
 
 
