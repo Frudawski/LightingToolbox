@@ -1,4 +1,4 @@
-% huemdns tries to resolve hue bridge ip's and id'S over multicast dns
+% huemdns tries to resolve hue bridge ip's and id's over multicast dns
 % service.
 %
 % usage: [ip,id] = huemdns
@@ -7,13 +7,19 @@
 % Date: 01.05.2022
 
 
-function [ip,id] = huemdns(ip)
+function [ip,id] = huemdns(ip,w,hidden)
 
 if ~exist('ip','var')
     ip = {};
 end
 id = {};
-
+% waiting period for system response in s
+if ~exist('w','var')
+    w = 2;
+end
+if ~exist('hidden','var')
+    hidden = '-window hidden';
+end
 
 if ispc
         if ~exist('OCTAVE_VERSION', 'builtin')
@@ -23,22 +29,21 @@ if ispc
             [dns_sd,~] = system('dns-sd -help');
             if isequal(dns_sd,0)
                 
-                hidden = ''; %-window hidden
 
                 % LightingToolbox path
                 p = which('huecon.mat');
                 p = p(1:end-10);
                 % call dns-sd (Apple Bonjour)
                 %-window hidden
-                %system(['powershell ',hidden,' echo - & echo Searching for hue bridges, please wait a moment... & echo This window should close after 5 seconds. & dns-sd -B _hue._tcp > ',p,'hue_dns-sd_search.txt &']);
+                system(['powershell ',hidden,' echo - & echo Searching for hue bridges, please wait a moment... & echo This window should close after ',num2str(w,'%.0f'),' seconds. & dns-sd -B _hue._tcp > ',p,'hue_dns-sd_search.txt &']);
                 % wait for a short time
-                pause(5)
+                pause(w)
                 % force close not closing dns-sd
                 [~,~] = system('Taskkill/IM cmd.exe');
                 % read search results
                 str = fileread(which('hue_dns-sd_search.txt'));
                 % check for Hue Bridge(s)
-                HB = strfind(str,'Philips Hue');
+                HB = strfind(str,'Hue Bridge');
 
                 % loop over found Hue bridges
                 if ~isempty(HB)
@@ -49,9 +54,9 @@ if ispc
                         bridge = str(HB(n):HB(n)+19);
                         % resolve id
                         cmd = ['dns-sd -L "',bridge,'" _hue._tcp local.'];
-                        system(['powershell ',hidden,' echo - & echo Resolve Hue bridge id... & echo This Window should close after 5 seconds. & ',cmd,' >> ',p,'hue_dns-sd_search.txt &']);
+                        system(['powershell ',hidden,' echo - & echo Resolve Hue bridge id... & echo This Window should close after ',num2str(w,'%.0f'),' seconds. & ',cmd,' >> ',p,'hue_dns-sd_search.txt &']);
                         % wait for a short time
-                        pause(5)
+                        pause(w)
                         % force close not closing dns-sd
                         [~,~] = system('Taskkill/IM cmd.exe');
                         % extract id
@@ -68,9 +73,9 @@ if ispc
                     for n = 1%:length(HB)
                         % resolve ip
                         cmd = ['dns-sd -G v4 ',idaddress,'.local'];
-                        system(['powershell ',hidden,' echo - & echo Resolve Hue bridge ip-address... & echo This Window should close after 5 seconds. & ',cmd,' >> ',p,'hue_dns-sd_search.txt &']);
+                        system(['powershell ',hidden,' echo - & echo Resolve Hue bridge ip-address... & echo This Window should close after ',num2str(w,'%.0f'),' seconds. & ',cmd,' >> ',p,'hue_dns-sd_search.txt &']);
                         % wait for a short time
-                        pause(5)
+                        pause(w)
                         % force close not exiting dns-sd
                         [~,~] = system('Taskkill/IM cmd.exe');
                         % extract ip address
@@ -104,7 +109,7 @@ if ispc
         % try to use avahi-daemon
         [c,r] = system('avahi-browse -rt _hue._tcp');
         
-        % if function call succesful 
+        % if function call is succesful 
         if isequal(c,0)
             % loop over found bridges
             for n = 1:length(strfind(r,'hostname'))/2
@@ -119,6 +124,8 @@ if ispc
                 ind2 = ind2(ind2>adr(2*n));
                 ip{n} = r(ind1(1)+1:ind2(1)-1);
             end
+        else
+            disp(r)
         end
 
 end
