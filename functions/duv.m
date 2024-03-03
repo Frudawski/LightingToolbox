@@ -21,6 +21,7 @@ function d = duv(u,v,method)
 if ~exist('method','var')
     method = 'Robertson';
 end
+
 % check for method or Tcp
 if ischar(method)
     % get correspondig Tcp

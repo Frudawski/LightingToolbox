@@ -46,7 +46,7 @@ switch channel
         for n = 1:6
             subplot(2,3,n)
             if n ~=6
-              plotfalsecolours(aopic(:,:,n),mode,["L_{e,",strt{n},"} in W m^{-2}"])
+              plotfalsecolours(aopic(:,:,n),mode,["L_{e,",strt{n},"} in W m^{-2} sr^{-1}"])
             else
               plotfalsecolours(aopic(:,:,n),mode,["L_{",strt{n},"} in cd m^{-2}"])
             end

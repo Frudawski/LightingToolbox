@@ -59,14 +59,17 @@ c1 = color./1.25;
 c2 = color./1.75;
 
 % plot
-p1 = patch([lambda fliplr(lambda)],[datamax fliplr(datamin)],color,'EdgeColor','none');
+p1 = patch([lambda fliplr(lambda)],[datamax fliplr(datamin)],color,'EdgeColor',c2,'Linestyle','--');
 hold on
 p2 = patch([lambda fliplr(lambda)],[m+std fliplr(m-std)],c1,'EdgeColor','none');
 p3 = plot(lambda,m,'Color',c2);
+p4 = plot(lambda,datamax,'--','Color',c2);
+p5 = plot(lambda,datamin,'--','Color',c2);
+%hline = plot(NaN,NaN,'Color',color);
 if strcmp(p.Results.legend,'on')
   L = legend([p1 p2 p3],'min/max','standard deviation','mean');
 end
-%hline = plot(NaN,NaN,'Color',color);
+
 
 if ~isempty(p.Results.max) && ~isequal(p.Results.max,0)
     ylim([lambda(1) lambda(end) 0 p.Results.max])
