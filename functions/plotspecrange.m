@@ -1,19 +1,13 @@
-% statistical plot of an arbitrary number of spectra
+% Spectral variance of an arbitrary number of spectra
 % 
-%   usage: out = spectrum_range(wavelength,data,'parameter',value)
-%
-%   where out is an struct with the following elements:
-%       - min
-%       - max
-%       - mean
-%       - SD (standad deviation)
+%   usage: v = plotspecrange(lambda,data,'parameter',value)
 %
 %   parameters: 
 %       'Color':  single color vector (default: [0 0.4470 0.7410])
 %       'ylabel': y-axis label
 %       
 % author: Frederic Rudawski
-% date: 21.03.2018 - last updated: 26.07.2018
+% date: 21.03.2018 - last updated: 30.08.2025
 
 
 function varout = plotspecrange(lambda,data,varargin)

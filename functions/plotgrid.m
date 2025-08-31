@@ -12,7 +12,7 @@
 % climits sets the colorbar range
 % 
 % author: Frederic Rudawski
-% date: 12.12.2021
+% date: 12.12.2021 - last edited 24.11.2024
 % see: https://www.frudawski.de/plotgrid
 
 function plotgrid(x,y,Y,mode,clabel,climits)
@@ -44,7 +44,12 @@ ay = [y(1,:)-dy; y; y(end,:)+dy];
 ay = [ay(:,1) ay ay(:,end)];
 
 % extrapolate borders
-data = interp2(x,y,Y,ax,ay,'spline');
+try
+    GI = scatteredInterpolant(x(:),y(:),Y(:));
+    data = reshape(GI(ax(:),ay(:)),size(Y)+2);
+catch
+    data = interp2(x,y,Y,ax,ay,'spline');
+end
 
 % call plot function depending on plot mode
 switch mode

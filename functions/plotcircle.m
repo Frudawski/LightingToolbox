@@ -3,7 +3,7 @@
 % usage: plotcircle(x,y,r,mode)
 %
 % where:
-% x & y are the ciclre center coordinates
+% x & y are the circle center coordinates
 % r is the circles radius
 % mode specifies the plot mode, e.g. 'g--'
 %

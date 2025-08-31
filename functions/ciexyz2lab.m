@@ -62,9 +62,9 @@ indz = zr>eps;
 fx(indx)  = nthroot(xr(indx),3);
 fx(~indx) = (814./108).*(xr(~indx))+16./116;
 fy(indy)  = nthroot(yr(indy),3);
-fy(~indy) = (814./108).*(yr(~indx))+16./116;
+fy(~indy) = (814./108).*(yr(~indy))+16./116;
 fz(indz)  = nthroot(zr(indz),3);
-fz(~indz) = (814./108).*(zr(~indx))+16./116;
+fz(~indz) = (814./108).*(zr(~indz))+16./116;
 
 L = 116.*fy-16;
 a = 500.*(fx-fy);

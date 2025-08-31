@@ -59,12 +59,12 @@ for n = 1:length(ip)
         % no certficate found
         selection = questdlg('Unable to get HUE bridge certificate. You can try with default certificate, connect over self-signed certificate or establish an unsecrue connection.', ...
             'No certificate found',......
-            'Default','Self-signed','Unsecure','Default');
+            'Default','Self-signed','Insecure','Default');
         switch selection
             % insecure connection
-            case 'Unsecure'
-                unsecure = questdlg('Are you sure you want to establish a permanent and unsecure connection in your local network?.', ...
-                    'Unsecure connection',......
+            case 'Insecure'
+                unsecure = questdlg('Are you sure you want to establish a permanent and insecure connection in your local network?.', ...
+                    'Insecure connection',......
                     'Yes','Cancel','Cancel');
                 switch unsecure
                     case 'Yes'
@@ -117,6 +117,8 @@ for n = 1:length(ip)
     if exist('OCTAVE_VERSION', 'builtin')
       if ispc
         user = getenv('USERNAME');
+      elseif ismac
+        [~, user] = system('id -F');
       else
         [~,user] = system('echo %USERNAME%');
       end

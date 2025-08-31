@@ -1,12 +1,12 @@
 % hueset allows to change philips hue group or lamp settings.
 %
-% usage: resp = huesetgroup(element,mode,parameter,value)
+% usage: resp = hueset(element,mode,parameter,value)
 %
 % where: resp: reuturns the response of the hue brigde
 %        element: defines which group or lamp is to be changed:
 %                 groups: char/string of group name or group id, for
 %                         several groups, use cell array.
-%                 lamps:  numeric or vecotr with lamp id. 
+%                 lamps:  numeric or vecotr with lamp id.
 %               name or group id.
 %        mode: sets the group lamps status:
 %              'on' turns all lamps on

@@ -1,5 +1,10 @@
 % sundiagram
 %
+% usage: sundiagram(coord,offset,date,time,color)
+%
+% where: 
+% coord: is a coordinate vector [longitude latitude]
+%
 % Author: Frederic Rudawski
 % Date: 30.06.2022
 

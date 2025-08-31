@@ -2,9 +2,9 @@
 %
 % usage: huelamps(lamp,bridgenr,mode)
 %
-% where: lamp (optional) specifies the lamp number(s) (numeric or vector) or
-%             group (str/char).
-%        brdgenr allows to specify which bridge
+% where:
+%        lamp: (optional) specifies the lamp number(s) (numeric or vector) or group (str/char).
+%        bridgenr: allows to specify which bridge
 %        mode: 'secure' (default) or 'allow-insecure' if a secure
 %               connection is not possible
 %
@@ -26,12 +26,16 @@ h = hueget('lights','',bridgenr,mode);
 
 % initialize
 if exist('OCTAVE_VERSION', 'builtin')
-  ind = fieldnames(h);
+  if ~isempty(h)
+    ind = fieldnames(h);
+  else
+    ind = [];
+  end
 else
     if ~isempty(h)
         ind = fields(h);
     else
-        ind =[];
+        ind = [];
     end
 end
 lamps = cell(length(ind),9);
@@ -41,7 +45,7 @@ if ~exist('nr','var')
 end
 if isempty(nr)
    nr = 1:length(ind);
-end 
+end
 
 if exist('OCTAVE_VERSION', 'builtin')
 % OCTAVE CODE
@@ -71,16 +75,16 @@ if exist('OCTAVE_VERSION', 'builtin')
        lamps{n,10} = NaN;
     end
   end
-  
+
   try
     col =  {'lamp_id' 'name' 'type' 'group' 'group_id' 'on' 'brightness' 'CCT' 'x' 'y'};
     lamptab = dataframe([col;lamps]);
   catch
-    error(['Octave dataframe package not loaded!',char(10),'Install: pkg install -forge dataframe',char(10),'Load: pkg load dataframe'])
+    error(['Octave dataframe package not loaded?',char(10),'Install: pkg install -forge dataframe',char(10),'Load: pkg load dataframe'])
   end
 
 % get lights groups
-g = hueget('groups','',bridgenr);
+g = hueget('groups','',bridgenr,mode);
 ind = fieldnames(g);
 for n = 1:length(ind)
     % add group information
@@ -97,11 +101,11 @@ end
 
 % selected lamps
 lamptab = lamptab(nr,:);
-  
+
 else
-% MATLAB CODE  
-  
-% nr | name | type | group | group nr | on | brighntess | hue | saturration | x | y | ct 
+% MATLAB CODE
+
+% nr | name | type | group | group nr | on | brighntess | hue | saturration | x | y | ct
 for n = 1:length(ind)
     lamps{n,1} = str2double(ind{n}(2:end));
     lamps{n,2} = h.(ind{n}).name;
