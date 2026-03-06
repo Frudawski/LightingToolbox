@@ -1,5 +1,7 @@
 % readaometerangle
 %
+% [im,reso] = readaometerangles(filename)
+%
 % Author: Frederic Rudawski
 % Date: 07.02.2024
 
@@ -30,8 +32,14 @@ if exist('OCTAVE_VERSION', 'builtin')
     byte_size = file_information.bytes;
   end
 else
-  file_information = dir(filename);
-  byte_size = file_information.bytes;
+  try
+    file_information = dir(filename);
+    byte_size = file_information.bytes;
+  catch
+    filename = which(filename);
+    file_information = dir(filename);
+    byte_size = file_information.bytes;
+  end
 end
 
 % read file
@@ -50,7 +58,7 @@ switch byte_size
     case 1024*768*4
         reso = [1024 768];
     otherwise
-        error('Unsupproted resolution for ao-meter, use valid caibration: 160x120, 320x240, 640x480, 1024x768.')
+        error('Unsupproted resolution for ao-meter, use valid calibration: 160x120, 320x240, 640x480, 1024x768.')
 end
 
 % arrange image matrix
